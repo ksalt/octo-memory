@@ -1,0 +1,57 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+#octoMemory {
+    height: 100%;
+}
+
+.main-app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.main-header {
+    display: flex;
+    flex: 0 0 100px;
+    justify-content: space-between;
+    background-color: #000;
+    color: #fff;
+    font-size: 60px;
+    line-height: 60px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.main-header__title {
+    flex: none;
+}
+.main-header__settings {
+    flex: none;
+}
+.main-header__settings .icon {
+    width: 32px;
+    height: 32px;
+    fill: #fff;
+    cursor: pointer;
+}
+
+.main-footer {
+    display: flex;
+    flex: 0 0 50px;
+    background-color: #000;
+    color: #fff;
+    font-size: 18px;
+    padding-top: 25px;
+    box-sizing: border-box;
+}
+
+.main-footer__copyright {
+    margin: 0 auto;
+}
+
+.card-container {
+    display: flex;
+    flex: 1 0 auto;
+}
