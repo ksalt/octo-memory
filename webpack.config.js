@@ -21,7 +21,10 @@ var config = {
       test: /\.css$/, // Only .css files
       loader: 'style-loader!css-loader!postcss-loader' // Run both loaders
     },
-
+    {
+      test: /\.json$/,
+      loader: 'json-loader'
+    },
     {
       test: /\.svg$/,
       loader: 'svg-sprite?' + JSON.stringify({
