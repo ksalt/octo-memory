@@ -63,7 +63,7 @@ html, body {
 
 .card {
     position: relative;
-    transition: all 0.6s linear;
+    transition: all 0.6s;
     transform-style: preserve-3d;
     flex: 0 0 130px;
     height: 200px;
