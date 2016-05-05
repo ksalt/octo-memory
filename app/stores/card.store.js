@@ -12,8 +12,9 @@ var ActionTypes = CardConstants.ActionTypes;
 function getCards () {
   var cards = [];
   animals.forEach((animal) => {
-    cards.push({id: _.uniqueId(), text: animal.name, icon: animal.icon});
-    cards.push({id: _.uniqueId(), text: animal.name, icon: animal.icon});
+    //ToDo: this will be improved after language selection is added
+    cards.push({id: _.uniqueId(), text: animal.name, icon: animal.icon, hidden: false});
+    cards.push({id: _.uniqueId(), text: animal.name, icon: animal.icon, hidden: false});
   });
   return (_.shuffle(cards));
 }
@@ -21,6 +22,22 @@ function getCards () {
 function flip (id, isFlipped) {
   let card = _.findWhere(_cards, {id});
   card.isFlipped = isFlipped;
+}
+
+function checkFlippedCards () {
+  var flippedCards = _.where(_cards, {isFlipped: false, hidden: false});
+  if (flippedCards.length !== 2) {
+    return;
+  }
+  if (flippedCards[0].icon === flippedCards[1].icon) {
+    flippedCards.forEach((card) => {
+      card.hidden = true;
+    })
+  } else {
+    flippedCards.forEach((card) => {
+      card.isFlipped = true;
+    })
+  }
 }
 
 
@@ -50,6 +67,10 @@ AppDispatcher.register(function (payload) {
   switch(action.actionType) {
     case ActionTypes.FLIP_CARD:
       flip(action.id, action.isFlipped);
+      cardStore.emitChange();
+      break;
+    case ActionTypes.CHECK_FLIPPED_CARDS:
+      checkFlippedCards();
       cardStore.emitChange();
       break;
   }

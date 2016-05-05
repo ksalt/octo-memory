@@ -12,6 +12,13 @@ var config = {
     filename: 'bundle.js',
   },
   module: {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loaders: ['eslint']
+      }
+    ],
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
@@ -34,6 +41,10 @@ var config = {
     }]
   },
   postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
+  eslint: {
+    configFile: '.eslintrc.js',
+    emitError: true
+  },
   modulesDirectories: [
     'node_modules'
   ]

@@ -13,6 +13,11 @@ let CardActions = {
       id,
       isFlipped
     });
+  },
+  checkFlippedCards() {
+    AppDispatcher.handleViewAction({
+      actionType: ActionTypes.CHECK_FLIPPED_CARDS
+    });
   }
 };
 
