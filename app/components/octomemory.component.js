@@ -1,11 +1,11 @@
 'use strict';
 
-var React = require('react'),
-  CardSection = require('./card-section.component'),
-  Footer = require('./footer.component'),
-  Header = require('./header.component');
+import React from 'react';
+import CardSection from './card-section.component';
+import Footer from './footer.component';
+import Header from './header.component';
 
-var OctoMemory = React.createClass({
+export default React.createClass({
   render() {
     return (
       <div className="main-app">
@@ -16,5 +16,3 @@ var OctoMemory = React.createClass({
     );
   }
 });
-
-module.exports = OctoMemory;

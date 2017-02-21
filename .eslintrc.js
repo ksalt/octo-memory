@@ -80,7 +80,7 @@ module.exports = {
         "id-length": "off",
         "id-match": "error",
         "indent": "off",
-        "init-declarations": "error",
+        "init-declarations": "off",
         "jsx-quotes": [
             "error",
             "prefer-double"
@@ -170,7 +170,7 @@ module.exports = {
         "no-shadow-restricted-names": "error",
         "no-spaced-func": "error",
         "no-sync": "error",
-        "no-ternary": "error",
+        "no-ternary": "off",
         "no-throw-literal": "error",
         "no-trailing-spaces": "error",
         "no-undef-init": "error",
@@ -215,7 +215,7 @@ module.exports = {
         "require-yield": "error",
         "semi": "off",
         "semi-spacing": "error",
-        "sort-imports": "error",
+        "sort-imports": "off",
         "sort-vars": "off",
         "space-before-blocks": "error",
         "space-before-function-paren": "off",

@@ -1,15 +1,13 @@
 'use strict';
 
-var React = require('react');
+import React from 'react';
 
-let Footer = React.createClass({
+export default React.createClass({
   render() {
     return (
       <div className="footer">
-        <div className="footer__copyright">ksalt factory©</div>
+        <div className="footer__copyright">freakyscream factory©</div>
       </div>
     );
   }
 });
-
-module.exports = Footer;

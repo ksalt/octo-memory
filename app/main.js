@@ -1,12 +1,13 @@
 'use strict';
 
-require("./assets/styles/main.css");
-var files = require.context('./assets/svg', false, /\.svg$/);
-files.keys().forEach(files);
+import React from 'react';
+import ReactDOM from 'react-dom';
+import OctoMemory from 'components/octomemory.component';
 
-var ReactDOM = require('react-dom'),
-  React = require('react'),
-  OctoMemory = require('./components/octomemory.component');
+import "assets/styles/main.scss";
+
+const files = require.context('assets/svg', false, /\.svg$/);
+files.keys().forEach(files);
 
 ReactDOM.render(
   <OctoMemory />,

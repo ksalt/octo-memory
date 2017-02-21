@@ -1,14 +1,14 @@
 'use strict';
 
-var React = require('react'),
-  cn = require('classnames'),
-  Icon = require('./shared/icon');
+import React from 'react';
+import cn from 'classnames';
+import Icon from './shared/icon';
 
-let Card = React.createClass({
+export default React.createClass({
 
   getDefaultProps() {
     return ({
-      isFlipped: true
+      isFlipped: false
     });
   },
 
@@ -37,7 +37,3 @@ let Card = React.createClass({
     );
   }
 });
-
-module.exports = Card;
-
-
