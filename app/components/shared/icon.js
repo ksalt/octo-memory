@@ -1,9 +1,9 @@
 'use strict';
 
-var React = require('react'),
-  cn = require('classnames');
+import React from 'react';
+import cn from 'classnames';
 
-let Icon = React.createClass({
+export default React.createClass({
   getDefaultProps() {
     return ({
       width: 18,
@@ -12,7 +12,8 @@ let Icon = React.createClass({
   },
 
   render() {
-    let iconClass = cn('icon', this.props.customClass),
+    const
+      iconClass = cn('icon', this.props.customClass),
       styles = {
         width: this.props.width + "px",
         height: this.props.height + "px"
@@ -26,8 +27,3 @@ let Icon = React.createClass({
     );
   }
 });
-
-module.exports = Icon;
-
-
-

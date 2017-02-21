@@ -2,14 +2,10 @@ var path = require('path');
 var autoprefixer = require('autoprefixer');
 
 var config = {
-  entry: [
-    'webpack/hot/dev-server',
-    'webpack-dev-server/client?http://localhost:8080',
-    path.resolve(__dirname, 'app/main')
-  ],
+  entry: path.resolve(__dirname, 'app/main'),
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   module: {
     preLoaders: [
@@ -29,6 +25,10 @@ var config = {
       loader: 'style-loader!css-loader!postcss-loader' // Run both loaders
     },
     {
+      test: /\.scss$/,
+      loader: 'style!css?sourceMap!postcss!sass?sourceMap!'
+    },
+    {
       test: /\.json$/,
       loader: 'json-loader'
     },
@@ -40,6 +40,13 @@ var config = {
       })
     }]
   },
+
+  resolve: {
+    root: path.resolve('./app'),
+    extensions: ['', '.js', '.json'],
+    modulesDirectories: ['node_modules']
+  },
+
   postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
   eslint: {
     configFile: '.eslintrc.js',

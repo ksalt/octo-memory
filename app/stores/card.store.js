@@ -1,16 +1,19 @@
 'use strict';
 
-var AppDispatcher = require('../dispatcher/app.dispatcher'),
+const AppDispatcher = require('dispatcher/app.dispatcher'),
   EventEmitter = require('events').EventEmitter,
-  CardConstants = require('../constants/card.constants'),
+  CardConstants = require('constants/card.constants'),
   _ = require('underscore'),
-  animals = require('../animals'),
+  animals = require('animals'),
+  ActionTypes = CardConstants.ActionTypes,
   _cards = getCards();
 
-var ActionTypes = CardConstants.ActionTypes;
+let _isGameStarted;
+
+
 
 function getCards () {
-  var cards = [];
+  const cards = [];
   animals.forEach((animal) => {
     //ToDo: this will be improved after language selection is added
     cards.push({id: _.uniqueId(), text: animal.name, icon: animal.icon, hidden: false});
@@ -25,7 +28,7 @@ function flip (id, isFlipped) {
 }
 
 function checkFlippedCards () {
-  var flippedCards = _.where(_cards, {isFlipped: false, hidden: false});
+  const flippedCards = _.where(_cards, {isFlipped: false, hidden: false});
   if (flippedCards.length !== 2) {
     return;
   }
@@ -40,10 +43,24 @@ function checkFlippedCards () {
   }
 }
 
+function startGame () {
+  _isGameStarted = true;
+}
+
+function flipAllCards () {
+  _cards.forEach((card) => {
+    card.isFlipped = true;
+  })
+}
+
 
 class CardStore extends EventEmitter {
   getAll() {
     return _cards;
+  }
+
+  isGameStarted() {
+    return _isGameStarted;
   }
 
   emitChange() {
@@ -59,10 +76,10 @@ class CardStore extends EventEmitter {
   }
 }
 
-var cardStore = new CardStore();
+const cardStore = new CardStore();
 
 AppDispatcher.register(function (payload) {
-  var action = payload.action;
+  const action = payload.action;
 
   switch(action.actionType) {
     case ActionTypes.FLIP_CARD:
@@ -71,6 +88,14 @@ AppDispatcher.register(function (payload) {
       break;
     case ActionTypes.CHECK_FLIPPED_CARDS:
       checkFlippedCards();
+      cardStore.emitChange();
+      break;
+    case ActionTypes.START_GAME:
+      startGame();
+      cardStore.emitChange();
+      break;
+    case ActionTypes.FLIP_ALL_CARDS:
+      flipAllCards();
       cardStore.emitChange();
       break;
   }

@@ -1,6 +1,6 @@
 'use strict';
 
-var Dispatcher = require('flux').Dispatcher;
+import {Dispatcher} from 'flux';
 
 class AppDispatcher extends Dispatcher {
   handleViewAction(action) {

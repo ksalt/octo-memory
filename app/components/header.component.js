@@ -1,18 +1,17 @@
 'use strict';
 
-var React = require('react');
+import React from 'react';
+import Icon from './shared/icon';
 
-let Header = React.createClass({
+export default React.createClass({
   render() {
     return (
       <div className="header">
         <div className="header__title">Octo-Memory</div>
         <div className="header__settings">
-          <svg className="icon" dangerouslySetInnerHTML={{__html: '<use xlink:href="#ic_settings_black_24px"></use>'}}/>
+          <Icon width="32" height="32" icon="ic_settings_black_24px" />
         </div>
       </div>
     );
   }
 });
-
-module.exports = Header;

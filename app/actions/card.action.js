@@ -1,11 +1,11 @@
 'use strict';
 
-var AppDispatcher = require('../dispatcher/app.dispatcher'),
-  CardConstants = require('../constants/card.constants');
+import AppDispatcher from '../dispatcher/app.dispatcher';
+import CardConstants from '../constants/card.constants';
 
-var ActionTypes = CardConstants.ActionTypes;
+const ActionTypes = CardConstants.ActionTypes;
 
-let CardActions = {
+export default {
 
   flip(id, isFlipped) {
     AppDispatcher.handleViewAction({
@@ -18,7 +18,15 @@ let CardActions = {
     AppDispatcher.handleViewAction({
       actionType: ActionTypes.CHECK_FLIPPED_CARDS
     });
+  },
+  startGame() {
+    AppDispatcher.handleViewAction({
+      actionType: ActionTypes.START_GAME
+    });
+  },
+  flipAllCards() {
+    AppDispatcher.handleViewAction({
+      actionType: ActionTypes.FLIP_ALL_CARDS
+    });
   }
 };
-
-module.exports = CardActions;

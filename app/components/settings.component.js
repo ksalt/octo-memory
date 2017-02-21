@@ -1,14 +1,11 @@
 'use strict';
 
-var React = require('react');
+import React from 'react';
 
-let Settings = React.createClass({
+export default React.createClass({
   render() {
     return (
       <div className="settings-container"></div>
     );
   }
 });
-
-module.exports = Settings;
-
