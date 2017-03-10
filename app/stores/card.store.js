@@ -1,16 +1,14 @@
 'use strict';
 
-const AppDispatcher = require('dispatcher/app.dispatcher'),
-  EventEmitter = require('events').EventEmitter,
-  CardConstants = require('constants/card.constants'),
-  _ = require('underscore'),
-  animals = require('animals'),
-  ActionTypes = CardConstants.ActionTypes,
-  _cards = getCards();
+import AppDispatcher from 'dispatcher/app.dispatcher';
+import { EventEmitter } from 'events';
+import CardConstants from 'constants/card.constants';
+import _ from 'underscore';
+import animals from 'animals';
+const ActionTypes = CardConstants.ActionTypes;
+const _cards = getCards();
 
 let _isGameStarted;
-
-
 
 function getCards () {
   const cards = [];
@@ -101,4 +99,4 @@ AppDispatcher.register(function (payload) {
   }
 });
 
-module.exports = cardStore;
+export default cardStore;

@@ -1,6 +1,6 @@
 import keyMirror from 'keymirror';
 
-module.exports = {
+export default {
 
   ActionTypes: keyMirror({
     FLIP_CARD: null,

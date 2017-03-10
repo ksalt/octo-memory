@@ -1,40 +1,72 @@
-var path = require('path');
-var autoprefixer = require('autoprefixer');
+const { resolve } = require('path');
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 
-var config = {
-  entry: path.resolve(__dirname, 'app/main'),
+const config = {
+  entry: [
+    // activate HMR for React
+    'react-hot-loader/patch',
+
+    // bundle the client for webpack-dev-server
+    // and connect to the provided endpoint
+    'webpack-dev-server/client?http://localhost:8080',
+
+    // bundle the client for hot reloading
+    // only- means to only hot reload for successful updates
+    'webpack/hot/only-dev-server',
+
+    // the entry point of our app
+    resolve(__dirname, 'app/main')
+  ],
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js'
+    path: resolve(__dirname, 'build'),
+
+    filename: 'bundle.js',
+
+    // necessary for HMR to know where to load the hot update chunks
+    publicPath: '/'
   },
+
+  devServer: {
+    // enable HMR on the server
+    hot: true,
+
+    // match the output path
+    contentBase: resolve(__dirname, 'build'),
+
+    // match the output `publicPath`
+    publicPath: '/'
+  },
+
   module: {
-    preLoaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loaders: ['eslint']
-      }
-    ],
-    loaders: [{
+    rules: [
+    {
       test: /\.js$/,
-      exclude: /node_modules/,
-      loader: "babel-loader"
+      use: [
+        'babel-loader'
+      ],
+      exclude: /node_modules/
     },
     {
       test: /\.css$/, // Only .css files
-      loader: 'style-loader!css-loader!postcss-loader' // Run both loaders
+      use: [
+        'style-loader',
+        'css-loader',
+        'postcss-loader'
+      ]
     },
     {
       test: /\.scss$/,
-      loader: 'style!css?sourceMap!postcss!sass?sourceMap!'
-    },
-    {
-      test: /\.json$/,
-      loader: 'json-loader'
+      use: [
+        'style-loader',
+        'css-loader?sourceMap',
+        'postcss-loader',
+        'sass-loader?sourceMap'
+      ]
     },
     {
       test: /\.svg$/,
-      loader: 'svg-sprite?' + JSON.stringify({
+      loader: 'svg-sprite-loader?' + JSON.stringify({
         name: '[name]',
         prefixize: true
       })
@@ -42,18 +74,20 @@ var config = {
   },
 
   resolve: {
-    root: path.resolve('./app'),
-    extensions: ['', '.js', '.json'],
-    modulesDirectories: ['node_modules']
+    modules: [
+      resolve('./app'),
+      'node_modules'
+    ],
+    extensions: ['.js', '.json']
   },
 
-  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
-  eslint: {
-    configFile: '.eslintrc.js',
-    emitError: true
-  },
-  modulesDirectories: [
-    'node_modules'
+  devtool: "eval-source-map",
+  plugins: [
+    // enable HMR globally
+    new webpack.HotModuleReplacementPlugin(),
+
+    // prints more readable module names in the browser console on HMR updates
+    new webpack.NamedModulesPlugin()
   ]
 };
 
