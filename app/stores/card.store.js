@@ -6,9 +6,10 @@ import CardConstants from 'constants/card.constants';
 import _ from 'underscore';
 import animals from 'animals';
 const ActionTypes = CardConstants.ActionTypes;
-const _cards = getCards();
 
+let _cards = getCards();
 let _isGameStarted;
+let _isGameFinished;
 
 function getCards () {
   const cards = [];
@@ -39,9 +40,14 @@ function checkFlippedCards () {
       card.isFlipped = true;
     })
   }
+  if (_.where(_cards, {hidden: true}).length === _cards.length) {
+    _isGameFinished = true;
+    _isGameStarted = false;
+  }
 }
 
 function startGame () {
+  _cards = getCards();
   _isGameStarted = true;
 }
 
@@ -59,6 +65,10 @@ class CardStore extends EventEmitter {
 
   isGameStarted() {
     return _isGameStarted;
+  }
+
+  isGameFinished() {
+    return _isGameFinished;
   }
 
   emitChange() {
