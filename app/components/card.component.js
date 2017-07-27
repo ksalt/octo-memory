@@ -13,17 +13,17 @@ export default React.createClass({
   },
 
   componentDidMount() {
-    this.refs.card.addEventListener('transitionend', this.props.onFlipEnd);
+    this.card.addEventListener('transitionend', this.props.onFlipEnd);
   },
 
   componentWillUnmount() {
-    this.refs.card.removeEventListener('transitionend', this.props.onFlipEnd);
+    this.card.removeEventListener('transitionend', this.props.onFlipEnd);
   },
 
   render() {
     let cardClass = cn('card', {'card--flipped': this.props.isFlipped, 'card--hidden': this.props.hidden});
     return (
-      <div className={cardClass} ref="card" onClick={this.props.onClick.bind(null, this.props.id, this.props.isFlipped)}>
+      <div className={cardClass} ref={(r) => this.card = r} onClick={() => this.props.onClick(this.props.id, this.props.isFlipped)}>
         <div className="card__front">
           <div className="card__icon-container">
             <Icon width="65" height="65" icon={this.props.icon}/>

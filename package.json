@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server --progress --colors --host 0.0.0.0",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress"
   },
   "repository": {
     "type": "git",
@@ -16,7 +17,7 @@
     "memory",
     "game"
   ],
-  "author": "ksalt",
+  "author": "freakyscream",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ksalt/octo-memory/issues"
