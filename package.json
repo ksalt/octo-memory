@@ -4,7 +4,7 @@
   "description": "a simple game",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "NODE_ENV=production webpack --config ./webpack.production.config.js --progress",
     "start": "webpack-dev-server --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress"
@@ -34,6 +34,7 @@
     "eslint": "^2.9.0",
     "eslint-loader": "^1.3.0",
     "eslint-plugin-react": "^5.0.1",
+    "extract-text-webpack-plugin": "^2.1.2",
     "json-loader": "^0.5.4",
     "node-sass": "^4.5.0",
     "postcss-loader": "^0.8.2",
