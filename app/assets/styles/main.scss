@@ -1,3 +1,5 @@
+@import "settings";
+
 html, body {
   height: 100%;
   margin: 0;
@@ -12,6 +14,98 @@ html, body {
   flex-direction: column;
   height: 100%;
 }
+
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.2);
+  text-align: center;
+  overflow: auto;
+}
+
+.modal__container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  background-color: #fff;
+  box-shadow: 0 0 30px rgba(0,0,0,.75);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  &--settings {
+    width: 400px;
+    height: 250px;
+  }
+}
+
+.modal-header {
+  display: flex;
+  height: 40px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #aaa;
+}
+
+.modal-header__title {
+  margin-left: auto;
+  flex: 1;
+  align-items: center;
+  display: flex;
+  font-size: 20px;
+  padding-left: 40px;
+  justify-content: center;
+}
+
+.modal-header__close {
+  display: flex;
+  align-items: center;
+  width: 40px;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.modal__content {
+  flex: 1;
+  padding: 5px 20px;
+}
+
+.modal-footer {
+  display: flex;
+  height: 40px;
+  box-sizing: border-box;
+  justify-content: flex-end;
+  border-top: 1px solid #aaa;
+  padding: 0 5px;
+}
+
+.modal-footer__btn {
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  margin: 5px;
+  height: 30px;
+  line-height: 30px;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 0 5px;
+  flex-basis: 60px;
+  &--cancel:hover {
+    background-color: #e6e6e6;
+  }
+  &--submit {
+    color: #ffffff;
+    background-color: #337ab7;
+    &:hover {
+      background-color: #286090;
+    }
+  }
+
+}
+
 .header {
   display: flex;
   flex: 0 0 100px;

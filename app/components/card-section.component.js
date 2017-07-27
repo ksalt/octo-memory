@@ -8,13 +8,13 @@ import Card from './card.component';
 import CardActions from 'actions/card.action';
 import CardStore from 'stores/card.store';
 
-function getCardState () {
+const getCardState = () => {
   return {
     cards: CardStore.getAll(),
     isStarted: CardStore.isGameStarted(),
     isFinished: CardStore.isGameFinished()
   }
-}
+};
 
 export default React.createClass({
   getInitialState() {

@@ -1,0 +1,24 @@
+.settings {
+  .settings-select {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    font-size: 18px;
+    text-align: left;
+    justify-content: space-between;
+  }
+  .settings-select__label {
+    flex: 90;
+    &--divide {
+      text-align: right;
+      flex: 0 0 35px;
+      margin-right: 20px;
+    }
+  }
+  .settings-select__select-container {
+    flex: none;
+    display: flex;
+    justify-content: flex-end;
+    box-sizing: border-box;
+  }
+}

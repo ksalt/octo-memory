@@ -22,6 +22,7 @@ export default React.createClass({
       <svg className={iconClass}
            style={styles}
            dangerouslySetInnerHTML={{__html: '<use xlink:href="#' + this.props.icon + '"></use>'}}
+           onClick={this.props.onClick}
       >
       </svg>
     );

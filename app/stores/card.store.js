@@ -3,30 +3,28 @@
 import AppDispatcher from 'dispatcher/app.dispatcher';
 import { EventEmitter } from 'events';
 import CardConstants from 'constants/card.constants';
+import AppStore from './app.store';
 import _ from 'underscore';
 import animals from 'animals';
 const ActionTypes = CardConstants.ActionTypes;
+const categories = {animals};
 
-let _cards = getCards();
-let _isGameStarted;
-let _isGameFinished;
-
-function getCards () {
+const getCards = () => {
   const cards = [];
-  animals.forEach((animal) => {
+  _.shuffle(categories[AppStore.getCardCategory()]).slice(0, AppStore.getCardNumber()/2).forEach(animal => {
     //ToDo: this will be improved after language selection is added
     cards.push({id: _.uniqueId(), text: animal.name, icon: animal.icon, hidden: false});
     cards.push({id: _.uniqueId(), text: animal.name, icon: animal.icon, hidden: false});
   });
   return (_.shuffle(cards));
-}
+};
 
-function flip (id, isFlipped) {
+const flip = (id, isFlipped) => {
   let card = _.findWhere(_cards, {id});
   card.isFlipped = isFlipped;
-}
+};
 
-function checkFlippedCards () {
+const checkFlippedCards = () => {
   const flippedCards = _.where(_cards, {isFlipped: false, hidden: false});
   if (flippedCards.length !== 2) {
     return;
@@ -44,19 +42,22 @@ function checkFlippedCards () {
     _isGameFinished = true;
     _isGameStarted = false;
   }
-}
+};
 
-function startGame () {
+const startGame = () => {
   _cards = getCards();
   _isGameStarted = true;
-}
+};
 
-function flipAllCards () {
+const flipAllCards = () => {
   _cards.forEach((card) => {
     card.isFlipped = true;
   })
-}
+};
 
+let _cards = getCards();
+let _isGameStarted;
+let _isGameFinished;
 
 class CardStore extends EventEmitter {
   getAll() {
@@ -86,7 +87,7 @@ class CardStore extends EventEmitter {
 
 const cardStore = new CardStore();
 
-AppDispatcher.register(function (payload) {
+AppDispatcher.register(payload => {
   const action = payload.action;
 
   switch(action.actionType) {
