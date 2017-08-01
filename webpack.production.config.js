@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const extractSass = new ExtractTextPlugin({
   filename: "[name].[contenthash].css",
@@ -57,6 +58,9 @@ module.exports = {
   },
 
   plugins: [
+    new HtmlWebpackPlugin({
+      favicon: './build/favicon.png'
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
