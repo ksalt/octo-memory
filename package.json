@@ -6,7 +6,7 @@
   "scripts": {
     "build": "NODE_ENV=production node server.js",
     "start": "webpack-dev-server --progress --colors --disableHostCheck --host 0.0.0.0",
-    "postinstall": " webpack --config ./webpack.production.config.js --progress",
+    "postinstall": "webpack --config ./webpack.production.config.js --progress",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "npm run build"
   },
