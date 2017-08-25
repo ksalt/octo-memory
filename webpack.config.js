@@ -1,6 +1,7 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
   entry: [
@@ -66,10 +67,9 @@ const config = {
     },
     {
       test: /\.svg$/,
-      loader: 'svg-sprite-loader?' + JSON.stringify({
-        name: '[name]',
-        prefixize: true
-      })
+      use: [
+        'svg-sprite-loader'
+      ]
     }]
   },
 
@@ -83,6 +83,10 @@ const config = {
 
   devtool: "eval-source-map",
   plugins: [
+    new HtmlWebpackPlugin({
+      favicon: './build/favicon.png',
+      template: __dirname + "/app/index.tmpl.html"
+    }),
     // enable HMR globally
     new webpack.HotModuleReplacementPlugin(),
 

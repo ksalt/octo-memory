@@ -37,10 +37,9 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: 'svg-sprite-loader?' + JSON.stringify({
-          name: '[name]',
-          prefixize: false
-        })
+        use: [
+          'svg-sprite-loader'
+        ]
       },
       {
         test: /\.(gif|png|woff|woff2|eot|ttf|fog|otf)$/,
@@ -59,7 +58,8 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      favicon: './build/favicon.png'
+      favicon: './build/favicon.png',
+      template: __dirname + "/app/index.tmpl.html"
     }),
     new webpack.DefinePlugin({
       'process.env': {

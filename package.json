@@ -4,8 +4,9 @@
   "description": "a simple game",
   "main": "index.js",
   "scripts": {
-    "build": "NODE_ENV=production webpack --config ./webpack.production.config.js --progress",
+    "build": "NODE_ENV=production node server.js",
     "start": "webpack-dev-server --progress --colors --disableHostCheck --host 0.0.0.0",
+    "postinstall": " webpack --config ./webpack.production.config.js --progress",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "npm run build"
   },
@@ -42,12 +43,13 @@
     "react-hot-loader": "^3.0.0-beta.6",
     "sass-loader": "^6.0.1",
     "style-loader": "^0.13.1",
-    "svg-sprite-loader": "0.0.18",
+    "svg-sprite-loader": "^3.2.4",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1"
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "express": "^4.15.4",
     "flux": "^2.1.1",
     "keymirror": "^0.1.1",
     "react": "^15.4.2",
