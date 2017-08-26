@@ -4,9 +4,8 @@
   "description": "a simple game",
   "main": "index.js",
   "scripts": {
-    "build": "NODE_ENV=production node server.js",
+    "build": "NODE_ENV=production webpack -p --config ./webpack.production.config.js --progress",
     "start": "webpack-dev-server --progress --colors --disableHostCheck --host 0.0.0.0",
-    "postinstall": "webpack --config ./webpack.production.config.js --progress",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "npm run build"
   },
