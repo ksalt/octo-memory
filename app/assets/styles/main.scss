@@ -177,7 +177,7 @@ html, body {
   cursor: pointer;
   .icon {
     transition:  0.4s ease-out;
-    margin: 0 10px;
+    margin-right: 10px;
   }
   &:hover .icon {
     transform: rotateZ(120deg);
