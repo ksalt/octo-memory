@@ -21,4 +21,4 @@ jobs:
         name: Push image to OCI registry
         with:
           destination: index.docker.io/cbpautomation/python-hello-world-docker:${{cloudbees.version}}
-          labels: octo
+          labels: app=octo
